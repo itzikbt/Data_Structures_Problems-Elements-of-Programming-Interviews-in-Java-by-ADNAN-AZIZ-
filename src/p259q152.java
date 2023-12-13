@@ -6,18 +6,18 @@ public class p259q152 {
 
     }
 
-
-    private static enum Direction {LEFT, RIGHT};
     public static BSTNode firstGreaterThenKey(BSTNode tree, int key){
-        BSTNode firstGreater = null;
+        BSTNode subTree = tree, firstGreater = null;
 
-        while(tree.getData() > key){
-            tree = (BSTNode) tree.getRight();
+        while(subTree != null){
+            if (subTree.getData() > key) {
+                firstGreater = subTree;
+                subTree = (BSTNode) subTree.getLeft();
+            }
+            else {
+                subTree = (BSTNode) subTree.getRight();
+            }
         }
-
-        Enum<Direction> direction = tree.getData() <= key ? Direction.RIGHT : Direction.LEFT;
-
-
         return firstGreater;
     }
 
