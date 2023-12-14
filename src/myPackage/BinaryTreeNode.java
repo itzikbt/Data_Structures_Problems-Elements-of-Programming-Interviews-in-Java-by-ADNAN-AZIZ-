@@ -25,29 +25,33 @@ public class BinaryTreeNode<T> {
     }
 
     public void addRight(BinaryTreeNode<T> node){
-        int newNodeSize = this.right != null ? node.size - this.right.size : node.size;
-        BinaryTreeNode<T> ancestor = this;
-        while (ancestor != null){
-            ancestor.size = ancestor.size + newNodeSize;
-            ancestor = ancestor.parent;
-        }
+        if (node != null) {
+            int newNodeSize = this.right != null ? node.size - this.right.size : node.size;
+            BinaryTreeNode<T> ancestor = this;
+            while (ancestor != null) {
+                ancestor.size = ancestor.size + newNodeSize;
+                ancestor = ancestor.parent;
+            }
 
+            node.parent = this;
+            node.depth = this.depth + 1;
+        }
         this.right = node;
-        node.parent = this;
-        node.depth = this.depth +1;
     }
 
     public void addLeft(BinaryTreeNode<T> node){
-        int newNodeSize = this.left != null ? node.size - this.left.size : node.size;
-        BinaryTreeNode<T> ancestor = this;
-        while (ancestor != null){
-            ancestor.size = ancestor.size + newNodeSize;
-            ancestor = ancestor.parent;
-        }
+        if (node != null) {
+            int newNodeSize = this.left != null ? node.size - this.left.size : node.size;
+            BinaryTreeNode<T> ancestor = this;
+            while (ancestor != null) {
+                ancestor.size = ancestor.size + newNodeSize;
+                ancestor = ancestor.parent;
+            }
 
+            node.parent = this;
+            node.depth = this.depth + 1;
+        }
         this.left = node;
-        node.parent = this;
-        node.depth = this.depth +1;
     }
 
     public T getData(){return data;}
